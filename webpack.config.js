@@ -12,6 +12,10 @@ module.exports = {
     filename: 'javascripts/[name]-[contenthash].js',
     publicPath: '/',
   },
+  devServer: {
+    contentBase: path.join(__dirname, '.dist'),
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -24,7 +28,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(js|jsx)/,
+        test: /\.js/,
         exclude: /node_modules/,
         use: [
           {
@@ -32,7 +36,6 @@ module.exports = {
             options: {
               presets: [
                 ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
-                '@babel/preset-react',
               ],
             },
           },
@@ -46,7 +49,7 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            options: { sourceMap: false },
+            options: { sourceMap: true },
           },
           {
             loader: 'sass-loader',

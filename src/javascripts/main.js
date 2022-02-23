@@ -1,2 +1,2 @@
-import './reactApp.jsx';
-import '../stylesheets/main.scss';
+import '../stylesheets/vender/bootstrap-reboot.css';
+import '../stylesheets/style.scss';
