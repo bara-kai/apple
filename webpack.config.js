@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -15,6 +16,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, '.dist'),
     open: true,
+    writeToDisk: true,
   },
   module: {
     rules: [
@@ -60,7 +62,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|JPG)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[name]-[contenthash][ext]',
+          filename: 'images/[name][ext]',
         },
         use: [
           {
@@ -98,14 +100,16 @@ module.exports = {
       template: './src/templates/index.pug',
       filename: 'index.html',
     }),
-    new HtmlWebpackPlugin({
-      template: './src/templates/access.pug',
-      filename: 'access.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/templates/members/taro.pug',
-      filename: 'members/taro.html',
-    }),
     new CleanWebpackPlugin(),
+    new CopyPlugin({
+      //圧縮した画像をsrcのimagesフォルダからコピーして、distのimagesフォルダに出力する
+      patterns: [
+        {
+          from: '*.jpg',
+          to: './images/anm',
+          context: 'src/images/anm',
+        },
+      ],
+    }),
   ],
 };

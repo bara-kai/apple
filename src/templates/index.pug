@@ -4,4 +4,13 @@ block locals
   -var title = 'Hello Pug!';
   
 block content
-  h1 Apple!!
+  .content 
+    button#btn 画像の切り替え
+    //- .padding
+    //-   p HELLO
+    //- .anim_img_box#canvas
+    //-   img(src="../images/anm/0130.jpg" style="width: 100%;") 
+    //- #anim_img_padding.padding このエリアは画像を動かすためにスクロールされますが、重なっているので見えません。このサイズはJavaScriptで変わります。
+    //- .padding
+    //-   p Let's start.
+    img#image_place(src="../images/anm/0130.jpg" style="width: 100%;") 

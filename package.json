@@ -1,5 +1,5 @@
 {
-  "name": "webpack-training",
+  "name": "apple",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bara-kai/webpack-training.git"
+    "url": "git+https://github.com/bara-kai/apple.git"
   },
   "author": "barakai",
   "license": "UNLICENSED",
   "private": true,
   "bugs": {
-    "url": "https://github.com/bara-kai/webpack-training/issues"
+    "url": "https://github.com/bara-kai/apple.git"
   },
-  "homepage": "https://github.com/bara-kai/webpack-training#readme",
+  "homepage": "hhttps://github.com/bara-kai/apple.git#readme",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -26,6 +26,7 @@
     "@types/react": "^17.0.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^9.1.0",
     "css-loader": "^5.0.1",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^5.0.0-beta.5",
