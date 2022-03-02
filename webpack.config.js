@@ -100,6 +100,10 @@ module.exports = {
       template: './src/templates/index.pug',
       filename: 'index.html',
     }),
+    new HtmlWebpackPlugin({
+      template: './src/templates/font-scroll.pug',
+      filename: 'font-scroll.html',
+    }),
     new CleanWebpackPlugin(),
     new CopyPlugin({
       //圧縮した画像をsrcのimagesフォルダからコピーして、distのimagesフォルダに出力する

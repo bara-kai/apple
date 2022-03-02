@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 @import 'modules/variables';
+@import 'modules/scroll-animation';
 
 @import 'breakpoints/sp';
 
@@ -30,4 +31,31 @@
 
 .footer {
   color: red;
+}
+
+#btn {
+  margin-top: 100vh;
+}
+.hoge {
+  &__1 {
+    height: 500px;
+    background-color: lightgray;
+  }
+  &__2 {
+    height: 500px;
+    background-color: lightblue;
+  }
+  &__3 {
+    height: 500px;
+    background-color: lightgoldenrodyellow;
+  }
+  &__4 {
+    height: 500px;
+    background-color: lightcoral;
+  }
+}
+
+#test {
+  height: 100vh;
+  background-color: lightcoral;
 }
