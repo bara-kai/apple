@@ -62,7 +62,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|JPG)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[name][ext]',
+          filename: 'images/[name][contenthash][ext]',
         },
         use: [
           {
@@ -112,6 +112,11 @@ module.exports = {
           from: '*.jpg',
           to: './images/anm',
           context: 'src/images/anm',
+        },
+        {
+          from: '*.jpg',
+          to: './images/animation',
+          context: 'src/images/animation',
         },
       ],
     }),

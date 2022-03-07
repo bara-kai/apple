@@ -1,26 +1,30 @@
-.sticky {
-  position: sticky;
-  // top: 0;
-  height: 2000px;
-}
+// .sticky {
+//   position: sticky;
+//   top: 0;
+//   // bottom: 0;
+//   // height: 2000px;
+// }
 
-#anim_img_text {
-  color: lightgreen;
-  font-size: 60px;
-  z-index: 11;
-  position: sticky;
-  transform: matrix(1, 0, 0, 1, 0, 0);
-  top: 0%;
-  // width: 100%;
-}
-#anim_img {
-  position: sticky;
-  top: 0%;
-  z-index: 10;
-}
+// #anim_img_text {
+//   color: lightgreen;
+//   font-size: 60px;
+//   z-index: 11;
+//   position: sticky;
+//   transform: matrix(1, 0, 0, 1, 0, 0);
+//   top: 0%;
+//   // width: 100%;
+// }
+// #anim_img {
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   height: 100vh;
+//   width: auto;
+//   object-fit: cover;
+// }
 
-// .expansion__img(src="../images/anm/0130.jpg")
-// .expansion__text 最高のパフォーマンス
+// // .expansion__img(src="../images/anm/0130.jpg")
+// // .expansion__text 最高のパフォーマンス
 
 .ex {
   &__box {
@@ -30,7 +34,7 @@
   }
   &__sticky {
     position: sticky;
-    top: 0;
+    // top: 0;
   }
   &__wrap {
     position: relative;
@@ -64,5 +68,122 @@
     align-items: center;
     justify-content: center;
     z-index: 11;
+  }
+}
+
+// base
+.test1 {
+  height: 400px;
+  background-color: lightblue;
+}
+.test2 {
+  height: 400px;
+  background-color: lightcoral;
+}
+.test3 {
+  height: 400px;
+  background-color: lightcyan;
+}
+.test4 {
+  height: 400px;
+  background-color: lightpink;
+}
+.test5 {
+  height: 400px;
+  background-color: lightseagreen;
+}
+
+//animation1
+.animation1 {
+  &__box {
+    background-color: black;
+    // height: 3000px;
+  }
+
+  &__sticky {
+    position: sticky;
+    top: 0;
+  }
+
+  &__wrap {
+    position: relative;
+    border: 2px solid brown;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  &__imgarea {
+    z-index: 10;
+    & > img {
+      height: 100%;
+      width: auto;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+  }
+
+  &__text {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    width: 100%;
+    transform: translateY(-50%);
+    top: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 11;
+  }
+}
+
+.animation2 {
+  .sticky {
+    &__box {
+      background-color: black;
+      // height: 3000px;
+    }
+
+    &__sticky {
+      position: sticky;
+      top: 0;
+    }
+
+    &__wrap {
+      position: relative;
+      border: 2px solid brown;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    &__img {
+      z-index: 10;
+      & > img {
+        height: auto;
+        width: 100%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+    }
+
+    &__text {
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+      position: absolute;
+      width: 100%;
+      transform: translateY(-50%);
+      top: 50%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 11;
+    }
   }
 }
