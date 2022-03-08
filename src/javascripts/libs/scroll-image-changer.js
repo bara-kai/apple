@@ -4,16 +4,15 @@
 // directoryPath: 読み込み画像のディレクトリパス
 // }
 
+import { isThisTypeNode, textSpanIntersectsWithTextSpan } from 'typescript';
+
 class ScrollImageChanger {
   constructor(target, options) {
-    this.target = target + '__sticky';
-    this.targetImage = target + '__img';
     this.DOM = {};
-    this.DOM.target = document.querySelector(this.target);
-    this.DOM.targetImage = document.querySelector(this.targetImage);
+    this.DOM.target = document.querySelector(target + '__sticky');
+    this.DOM.targetImage = document.querySelector(target + '__img');
     this.DOM.targetBox = document.querySelector(target + '__box');
-    // this.targetImageHight = this.DOM.targetImage.getBoundingClientRect().height;
-    // console.log(this.targetImageHight);
+    this.DOM.targetText = document.querySelector(target + '__text');
     this.numberOfImages = options.numberOfImages;
     this.imageInterval = options.imageInterval;
     this.directoryPath = options.directoryPath;
@@ -58,6 +57,8 @@ class ScrollImageChanger {
     this.estvolume = this.numberOfImages * this.imageInterval;
     this.test = this.targetImageHight + this.estvolume;
 
+    //opacityを事前に0にする
+    this.DOM.target.style.opacity = 0;
     console.log('intialTargetTop: ' + this.initialTargetTop);
     // console.log(this.targetImages);
     // console.log(this.test);
@@ -69,17 +70,20 @@ class ScrollImageChanger {
       this.targetTop = this.rect.top + this.scrollY;
       this.animationScroll = this.scrollY - this.initialTargetTop;
       this.afterScroll = this.animationScroll - this.estvolume;
-      this.a = this.targetImageHeight + this.estvolume;
-      console.log('a: ' + this.a);
-      this.DOM.targetBox.style.height = this.a;
+      this.boxHeight = this.targetImageHeight + this.estvolume;
+      this.DOM.targetBox.style.height = this.boxHeight;
+      this.num = Math.floor(this.animationScroll / this.imageInterval);
 
       this._imageChange();
+      this._fadeAnimation(); //fade処理
+      this._textsizeChange(); //textsizeを変更する処理
     });
   }
 
   _imageChange() {
-    console.log(this.initialTargetTop);
-    console.log(this.scrollY);
+    console.log('initialTargetTop: ' + this.initialTargetTop);
+    console.log('scrollY: ' + this.scrollY);
+    console.log('animationScroll: ' + this.animationScroll);
     console.log('estVolume: ' + this.estvolume);
     console.log(this.allAnimationSize);
     console.log();
@@ -87,12 +91,43 @@ class ScrollImageChanger {
       this.initialTargetTop < this.scrollY &&
       this.scrollY < this.allAnimationSize
     ) {
-      this.num = Math.floor(this.animationScroll / this.imageInterval);
-      console.log(this.num);
+      console.log('num: ' + this.num);
       if (this.num <= 0 || this.num >= this.numberOfImages) return;
       if (this.tmp[this.num]) {
         this.DOM.targetImage.src = this.tmp[this.num].src;
       }
+    }
+  }
+
+  _fadeAnimation() {
+    this.targetOpacity = this.DOM.target.style.opacity;
+    this.fadeNOS = 20; // fadeさせる枚数
+
+    // box-fade-in
+    if (this.num <= 0) {
+      this.DOM.target.style.opacity = 0;
+    } else if (this.num > 0 && this.num <= this.fadeNOS) {
+      this.DOM.target.style.opacity = this.num / this.fadeNOS;
+    } else if (this.num > this.fadeNOS) {
+      this.DOM.target.style.opacity = 1;
+    }
+  }
+
+  _textsizeChange() {
+    // nuｍが0 - 25 の間文字を大きくする
+    //　文字は1.5まで大きくする
+    const startNum = 0;
+    const endNum = 25;
+    const startSize = 1;
+    const endSize = 1.5;
+    this.cSize = Math.abs(startSize - endSize) / Math.abs(startNum - endNum);
+    this.fSize = this.cSize * this.num + startSize;
+    if (this.num <= 0) {
+      this.DOM.targetText.style.transform = `matrix(${startSize}, 0, 0, ${startSize}, 0, 0)`;
+    } else if (this.num > 0 && this.num <= endNum) {
+      this.DOM.targetText.style.transform = `matrix(${this.fSize}, 0, 0, ${this.fSize}, 0, 0)`;
+    } else if (this.num > endNum) {
+      this.DOM.targetText.style.transform = `matrix(${endSize}, 0, 0, ${endSize}, 0, 0)`;
     }
   }
 
